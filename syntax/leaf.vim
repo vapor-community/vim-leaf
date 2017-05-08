@@ -3,7 +3,7 @@
 " " Maintainer: Brett Toomey <brettcwx@gmail.com>
 " " Contributor: Brett Toomey <brettcwx@gmail.com>
 " " Last Change: 8 May 2017
-" " Version: 0.0
+" " Version: 1.0
 
 runtime! syntax/html.vim
 unlet b:current_syntax
