@@ -2,7 +2,7 @@
 " " Language: Leaf Additions
 " " Maintainer: Brett Toomey <brettcwx@gmail.com>
 " " Contributor: Brett Toomey <brettcwx@gmail.com>
-" " Last Change: 5 May 2017
+" " Last Change: 8 May 2017
 " " Version: 0.0
 
 runtime! syntax/html.vim
@@ -13,18 +13,15 @@ if exists("b:current_syntax")
 endif
 
 syn match leafFunc skipwhite nextgroup=leafParam containedin=@htmlLeafContainer
-      \ /\(#\+\([A-Za-z_][A-Za-z_0-9]*\)*\)\%((\)\@=/
+      \ /\(#\+\([A-Za-z_][A-Za-z0-9-_:]*\)*\)\%((\)\@=/
 
-syn match leafIdentifiers contained skipwhite containedin=@htmlLeafContainer
-      \ /[A-Za-z_][A-Za-z_0-9]*/
+syn match leafIdentifiers contained skipwhite
+      \ /[A-Za-z_][A-Za-z0-9-_:]*/
 
-syn region leafString start=/"/ end=/"/ contains=leafFunc keepend containedin=TOP,@htmlLeafContainer
+syn region leafString start=/"/ end=/"/ contains=leafFunc 
 
-syn region leafParam contained contains=leafIdentifiers,leafString containedin=@htmlLeafContainer
-      \ matchgroup=Delimiter start="(" end=")" matchgroup=NONE skip=","
-
-syn match leafParamDelim contained containedin=@htmlLeafContainer
-      \ /,/
+syn region leafParam contained contains=leafIdentifiers,leafString,leafFunc
+      \ start="(" end=")" skip=","
 
 syntax cluster htmlLeafContainer add=htmlHead,htmlTitle,htmlString,htmlH1,htmlH2,htmlH3,htmlH4,htmlH5,htmlH6,htmlLink,htmlBold,htmlUnderline,htmlItalic,htmlValue
 
